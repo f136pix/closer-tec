@@ -1,0 +1,61 @@
+enum Role {
+    User
+    Admin
+}
+
+enum TechnicianRole {
+    Eletricician,
+    Mechanic,
+    Plumber
+}
+
+type User {
+    id: ID!
+    username: String!
+    email: String!
+    role: Role!
+}
+
+type Technician {
+    id: ID!
+    username: String!
+    passwordHash: String!
+    firstName: String!
+    lastName: String!
+    email: String!
+    city: String!
+    latitude: Float
+    longitude: Float
+    role: String!
+    createdAt: String!
+}
+
+input TechnicianCreateInput {
+    username: String!
+    passwordHash: String!
+    firstName: String!
+    lastName: String!
+    email: String!
+    city: String!
+    latitude: Float
+    longitude: Float
+    role: TechnicianRole!
+}
+
+input UserUpdateInput {
+    username: String
+    email: String
+    role: TechnicianRole
+}
+
+type Query {
+    userById(id: ID!): User
+    users: [User!]!
+    technicians: [Technician!]!
+}
+
+type Mutation {
+    createTechnician(technician: TechnicianCreateInput!): Technician!
+    updateUser(id: ID!, user: UserUpdateInput): User!
+    deleteUser(id: ID!): Boolean
+}
