@@ -27,9 +27,9 @@ const LocationPin = ({ locationInfo }) => (
 const Map = () => {
     return (
         <div className="map">
-            <h2 className="map-h2">Come Visit Us At Our Campus</h2>
+            <h2 className="text-white">Come Visit Us At Our Campus</h2>
 
-            <div className="google-map">
+            <div className="w-[10rem] h-[10rem]">
                 <GoogleMapReact
                     bootstrapURLKeys={{ key: "AIzaSyAAKPtqmfn_dKTzhOvK2zwKjKt75hVkhpo" }}
                     defaultCenter={location}
