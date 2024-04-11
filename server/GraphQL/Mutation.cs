@@ -49,22 +49,43 @@ public class Mutation
     public async Task<TechnicianCreateDto> CreateTechnician(TechnicianCreateDto technicianCreateDto,
         [Service] ITechnicianRepo technicianRepo)
     {
-        var existingTechnician = (await technicianRepo.GetAllTechnicians())
+        var exististsTechnician = (await technicianRepo.GetAllTechnicians())
             .FirstOrDefault(t => t.Email == technicianCreateDto.Email);
-        
-        if (existingTechnician != null)
+
+        if (exististsTechnician != null)
         {
             throw new GraphQLException(ErrorBuilder.New()
+                .SetCode("404")
                 .SetMessage("Technician with this email already exists").Build());
         }
-        
+
         await technicianRepo.CreateTechnician(technicianCreateDto);
         var result = await technicianRepo.SaveChanges();
         return result switch
         {
             true => technicianCreateDto,
             _ => throw new GraphQLException(ErrorBuilder.New()
-                .SetMessage("There was an error creating the technician").Build())
+                .SetMessage("There was an error creating the technician")
+                .Build())
         };
+    }
+
+    public async Task<bool> DeleteTechnician(int id, [Service] ITechnicianRepo technicianRepo)
+    {
+        var technician = await technicianRepo.GetTechnicianById(id);
+        if (technician == null)
+        {
+            throw new GraphQLException(ErrorBuilder.New()
+                .SetMessage("There is no technician with this Id").Build());
+        }
+
+        await technicianRepo.DeleteTechnician(id);
+        var result = await technicianRepo.SaveChanges();
+        if (!result)
+        {
+            throw new GraphQLException(ErrorBuilder.New()
+                .SetMessage("There was an error deleting the technician").Build());
+        }
+        return result;
     }
 }

@@ -1,16 +1,15 @@
-import './App.css'
-import Map from "./components/map/Map.tsx";
+
+import AppRoutes from "./routes";
+
+import './App.css';
+
 
 function App() {
-
-  return (
-    <>
-        <h1>
-            OLA
-        </h1>
-        <Map></Map>
+    return (
+        <>
+            <AppRoutes/>
         </>
-)
+    );
 }
 
-export default App
+export default App;

@@ -22,14 +22,30 @@ builder.Services
     .AddGraphQLServer()
     .AddQueryType<Query>()
     .AddMutationType<Mutation>();
+// cors
+builder.Services.AddCors(options =>
+{
+    options.AddPolicy("myAppCors", policy =>
+    {
+        // allow one origin
+    policy.WithOrigins("http://localhost:5173")
+            .AllowAnyHeader()
+            .AllowAnyMethod()
+            .AllowCredentials();
+    });
+});
 
 var app = builder.Build();
+var configuration = app.Services.GetRequiredService<IConfiguration>();
+//var allowedHosts = configuration.GetValue<string>("AllowedHosts");
 
 // Configure the HTTP request pipeline.
 if (app.Environment.IsDevelopment())
 {
+    Console.WriteLine("--> Dev mode <--");
     app.UseSwagger();
     app.UseSwaggerUI();
+    app.UseCors("myAppCors");
 }
 
 app.UseHttpsRedirection();

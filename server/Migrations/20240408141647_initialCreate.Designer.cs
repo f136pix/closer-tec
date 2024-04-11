@@ -12,8 +12,8 @@ using server.Data;
 namespace server.Migrations
 {
     [DbContext(typeof(DataContext))]
-    [Migration("20240328212246_update")]
-    partial class update
+    [Migration("20240408141647_initialCreate")]
+    partial class initialCreate
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -33,12 +33,13 @@ namespace server.Migrations
 
                     NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("Id"));
 
-                    b.Property<string>("City")
+                    b.Property<string>("Address")
                         .IsRequired()
                         .HasColumnType("text");
 
-                    b.Property<double>("CityCordinates")
-                        .HasColumnType("double precision");
+                    b.Property<string>("City")
+                        .IsRequired()
+                        .HasColumnType("text");
 
                     b.Property<DateTime>("CreatedAt")
                         .HasColumnType("timestamp with time zone");

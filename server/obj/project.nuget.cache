@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "+azbzhsX/CPFBTtuwiFmmM5TfDF+X5vfJfN3H4BhIqXlciutZjc3Or7oYzha7x6S6qpVyNxFyAPSpa+A2Zob8A==",
+  "dgSpecHash": "9xJqD1Mm+vXcnVOfXQ9BHJ3Szg8WOhb7mleYMi6vhGoyaV/9lLHj1Dya+eNgUq20dynzP1BUNrtBFSYPnvB+LA==",
   "success": true,
-  "projectFilePath": "/home/filipe/Desktop/Projects/CloserTec/server/server.csproj",
+  "projectFilePath": "/home/filipe/Desktop/Projects/closer-tec/server/server.csproj",
   "expectedPackageFiles": [
     "/home/filipe/.nuget/packages/bananacakepop.middleware/13.0.0/bananacakepop.middleware.13.0.0.nupkg.sha512",
     "/home/filipe/.nuget/packages/bcrypt.net-core/1.6.0/bcrypt.net-core.1.6.0.nupkg.sha512",

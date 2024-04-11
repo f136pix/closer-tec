@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "/home/filipe/Desktop/Projects/CloserTec/server/server.csproj": {}
+    "/home/filipe/Desktop/Projects/closer-tec/server/server.csproj": {}
   },
   "projects": {
-    "/home/filipe/Desktop/Projects/CloserTec/server/server.csproj": {
+    "/home/filipe/Desktop/Projects/closer-tec/server/server.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "/home/filipe/Desktop/Projects/CloserTec/server/server.csproj",
+        "projectUniqueName": "/home/filipe/Desktop/Projects/closer-tec/server/server.csproj",
         "projectName": "server",
-        "projectPath": "/home/filipe/Desktop/Projects/CloserTec/server/server.csproj",
+        "projectPath": "/home/filipe/Desktop/Projects/closer-tec/server/server.csproj",
         "packagesPath": "/home/filipe/.nuget/packages/",
-        "outputPath": "/home/filipe/Desktop/Projects/CloserTec/server/obj/",
+        "outputPath": "/home/filipe/Desktop/Projects/closer-tec/server/obj/",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "/home/filipe/.nuget/NuGet/NuGet.Config"

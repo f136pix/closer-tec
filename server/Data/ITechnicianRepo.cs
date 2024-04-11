@@ -9,6 +9,7 @@ namespace server.Data
     {
         Task<bool> SaveChanges();
         Task<IEnumerable<Technician>> GetAllTechnicians();
+        Task<IEnumerable<Technician>> GetTechniciansByQuery(TechnicianQueryDto technicianQueryDto);
         Task<Technician> GetTechnicianById(int id);
         Task CreateTechnician(TechnicianCreateDto technicianCreateDto);
         Task<bool> UpdateTechnician(int id, Technician technician);

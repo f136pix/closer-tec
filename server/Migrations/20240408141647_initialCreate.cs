@@ -7,7 +7,7 @@ using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 namespace server.Migrations
 {
     /// <inheritdoc />
-    public partial class update : Migration
+    public partial class initialCreate : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
@@ -22,7 +22,7 @@ namespace server.Migrations
                     LastName = table.Column<string>(type: "text", nullable: false),
                     Email = table.Column<string>(type: "text", nullable: false),
                     City = table.Column<string>(type: "text", nullable: false),
-                    CityCordinates = table.Column<double>(type: "double precision", nullable: false),
+                    Address = table.Column<string>(type: "text", nullable: false),
                     Latitude = table.Column<double>(type: "double precision", nullable: true),
                     Longitude = table.Column<double>(type: "double precision", nullable: true),
                     Role = table.Column<int>(type: "integer", nullable: false, defaultValue: 0),

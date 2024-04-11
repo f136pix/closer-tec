@@ -4,6 +4,7 @@ enum Role {
 }
 
 enum TechnicianRole {
+    Undefined,
     Eletricician,
     Mechanic,
     Plumber
@@ -23,7 +24,7 @@ type Technician {
     firstName: String!
     lastName: String!
     email: String!
-    city: String!
+    address: String!
     latitude: Float
     longitude: Float
     role: String!
@@ -36,26 +37,34 @@ input TechnicianCreateInput {
     firstName: String!
     lastName: String!
     email: String!
-    city: String!
+    address: String!
     latitude: Float
     longitude: Float
     role: TechnicianRole!
 }
 
+input TechnicianByQueryInput {
+    name: String
+    city: String
+    role: TechnicianRole
+}
+
 input UserUpdateInput {
     username: String
     email: String
-    role: TechnicianRole
+    role: [TechnicianRole]
 }
 
 type Query {
     userById(id: ID!): User
     users: [User!]!
     technicians: [Technician!]!
+    getTechniciansByQuery(query: TechnicianByQueryInput): [Technician]!
 }
 
 type Mutation {
     createTechnician(technician: TechnicianCreateInput!): Technician!
+    deleteTechnician(id: ID!): Boolean
     updateUser(id: ID!, user: UserUpdateInput): User!
     deleteUser(id: ID!): Boolean
 }

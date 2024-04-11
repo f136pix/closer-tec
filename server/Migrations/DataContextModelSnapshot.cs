@@ -30,12 +30,13 @@ namespace server.Migrations
 
                     NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("Id"));
 
-                    b.Property<string>("City")
+                    b.Property<string>("Address")
                         .IsRequired()
                         .HasColumnType("text");
 
-                    b.Property<double>("CityCordinates")
-                        .HasColumnType("double precision");
+                    b.Property<string>("City")
+                        .IsRequired()
+                        .HasColumnType("text");
 
                     b.Property<DateTime>("CreatedAt")
                         .HasColumnType("timestamp with time zone");
