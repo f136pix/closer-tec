@@ -21,18 +21,17 @@ public class TokenService : ITokenService
     {
         // data that is going to contain in the token
         List<Claim> claims = new List<Claim>();
-        claims.Add(new Claim(ClaimTypes.Role, user.Role.ToString()));
         claims.Add(new Claim(ClaimTypes.NameIdentifier, user.Id.ToString()));
 
         // hashing key
         var key = new SymmetricSecurityKey(
             Encoding.UTF8.GetBytes(_configuration.GetSection("AppSettings:Jwt").Value!));
 
-        // signing credentials are used to sign the token
         var creds = new SigningCredentials(key, SecurityAlgorithms.HmacSha512Signature);
 
         var token = new JwtSecurityToken(
             claims: claims,
+            //expires: DateTime.Now.AddDays(1),
             expires: DateTime.Now.AddDays(1),
             signingCredentials: creds
         );
@@ -55,11 +54,13 @@ public class TokenService : ITokenService
                 IssuerSigningKey = new SymmetricSecurityKey(key),
                 ValidateIssuer = false,
                 ValidateAudience = false,
+                ValidateLifetime = true
             }, out SecurityToken validatedToken);
             return true;
         }
         catch
         {
+            Console.Out.WriteLine("Invalid Token");
             return false;
         }
     }

@@ -3,15 +3,15 @@ import {Alert, Button, Snackbar, TextField} from "@mui/material";
 import {useLoadScript} from "@react-google-maps/api";
 import {Database} from "lucide-react";
 
-import {technicianRoles} from "../../data/presetData.tsx";
-import {useGetTechniciansByQueries} from "../../services/api/graphQL/graphQlQueries.ts";
-import {IGetTechniciansByQueries, ITechncian} from "../../types";
-import MultiSelect from "../Shared/MultiSelect.tsx";
-import FillScreenWrapper from "../Utils/ScreenWrapper.tsx";
+import {technicianRoles} from "../../../../data/presetData.tsx";
+import {useGetTechniciansByQueries} from "../../../../services/api/graphQL/graphQlQueries.ts";
+import {IGetTechniciansByQueries, ITechncian} from "../../../../types";
+import MultiSelect from "../../../Shared/MultiSelect.tsx";
+import FillScreenWrapper from "../../../Utils/ScreenWrapper.tsx";
 
-import AddTechnicianModal from "./components/AddTechnicianModal/AddTechnicianModal.tsx";
-import Map from "./components/Map/Map.tsx";
-import TechniciansInfoDrawer from "./components/TechniciansInfoDrawer/TechniciansInfoDrawer.tsx";
+import AddTechnicianModal from "./AddTechnicianModal/AddTechnicianModal.tsx";
+import Map from "./Map/Map.tsx";
+import TechniciansInfoDrawer from "./TechniciansInfoDrawer/TechniciansInfoDrawer.tsx";
 
 function DashboardPage() {
     //const {mutateAsync: createNewTechnician, isPending: isCreatingTech} = useCreateTechnician();
@@ -22,7 +22,7 @@ function DashboardPage() {
     const [snackBarMsg, setSnackBarMsg] = useState<string>("");
 
     const {isLoaded} = useLoadScript({
-        googleMapsApiKey: 'AIzaSyAAKPtqmfn_dKTzhOvK2zwKjKt75hVkhpo',
+        googleMapsApiKey: '####',
         libraries: ['places']
     });
 
@@ -44,7 +44,6 @@ function DashboardPage() {
         if (reason === 'clickaway') {
             return;
         }
-
         setSnackBarOpen(false);
     };
 

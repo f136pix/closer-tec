@@ -13,9 +13,9 @@ import {
     Typography
 } from "@mui/material";
 
-import {technicianRoles} from "../../../../data/presetData.tsx";
-import {useCreateTechnician} from "../../../../services/api/graphQL/graphQlQueries.ts";
-import {IApiRes, ICreateTechnicianDto} from "../../../../types";
+import {technicianRoles} from "../../../../../data/presetData.tsx";
+import {useCreateTechnician} from "../../../../../services/api/graphQL/graphQlQueries.ts";
+import {IApiRes, ICreateTechnicianDto} from "../../../../../types";
 
 import './AddTechnicianModal.css';
 
@@ -97,7 +97,7 @@ function AddTechnicianModal({isOpen, handleClose, showSnackBar}: IProps) {
         reValidateMode: 'onBlur',
     });
 
-    // all uncontrolled forms refs
+    // all uncontrolled forms refs/ not using zod in here
         const submitValues = async (values: any) => {
         try {
             setIsCreatingTechnician(true);

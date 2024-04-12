@@ -1,7 +1,7 @@
 import {useEffect, useState} from "react";
 import {GoogleMap, InfoWindow, Marker} from "@react-google-maps/api";
 
-import {ITechncian} from "../../../../types";
+import {ITechncian} from "../../../../../types";
 
 type IParams = {
     filteredTechnicians: ITechncian[] | null;

@@ -62,4 +62,18 @@ public class AuthController : ControllerBase
             }
         };
     }
+    
+    // POST /api/Auth/validate
+    [HttpPost("validate")]
+    public async Task<ActionResult> Validate(string token)
+    {
+        Console.Out.WriteLine($"--> Recieved Jwt {token}");
+        var result = _tokenService.ValidateToken(token);
+
+        return result switch
+        {
+            true => Ok("Token is valid"),
+            false => Unauthorized("Token is invalid") 
+        };
+    }
 }

@@ -1,9 +1,9 @@
 import {Button, CircularProgress, Dialog, DialogTitle} from "@mui/material";
 import {
     useDeleteTechnicianById,
-} from "../../../../../services/api/graphQL/graphQlQueries.ts";
+} from "../../../../../../services/api/graphQL/graphQlQueries.ts";
 import {useState} from "react";
-import {IApiRes} from "../../../../../types";
+import {IApiRes} from "../../../../../../types";
 
 type IProps = {
     deleteAlertOpen: boolean;

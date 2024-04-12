@@ -24,10 +24,6 @@ public class DataContext : DbContext
         base.OnModelCreating(modelBuilder);
 
         // set default value for Role
-        modelBuilder.Entity<User>()
-            .Property(u => u.Role)
-            .HasDefaultValue(Role.User);
-
         modelBuilder.Entity<Technician>()
             .Property(t => t.Role)
             .HasDefaultValue(TechnicianRole.Undefined);

@@ -2,7 +2,7 @@ import {useEffect, useState} from "react";
 import {Button, Divider, Drawer, List, ListItem, ListItemButton} from "@mui/material";
 import {ArrowLeft, Inbox, MapPin, Trash2, Wrench} from "lucide-react";
 
-import {ITechncian} from "../../../../types";
+import {ITechncian} from "../../../../../types";
 
 import TechnicianDeleteAlert from "./TechnicianDeleteAlert/TechnicianDeleteAlert.tsx";
 
@@ -103,7 +103,7 @@ function TechniciansInfoDrawer(props: IProps) {
                     }
                 </List>
             </div>
-            <TechnicianDeleteAlert
+           <TechnicianDeleteAlert
                 deleteAlertOpen={deleteAlertOpen}
                 handleAlertClose={handleAlertClose}
                 technicianId={alertTechnicianId}

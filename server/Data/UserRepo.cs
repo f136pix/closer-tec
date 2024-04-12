@@ -45,7 +45,6 @@ public class UserRepo : IUserRepo
         {
             userToUpdate.Username = user.Username;
             userToUpdate.Email = user.Email;
-            userToUpdate.Role = user.Role;
             return await _context.SaveChangesAsync() >= 0;
         }
 

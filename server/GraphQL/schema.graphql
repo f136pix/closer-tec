@@ -1,8 +1,3 @@
-enum Role {
-    User
-    Admin
-}
-
 enum TechnicianRole {
     Undefined,
     Eletricician,
@@ -14,7 +9,6 @@ type User {
     id: ID!
     username: String!
     email: String!
-    role: Role!
 }
 
 type Technician {
@@ -52,7 +46,6 @@ input TechnicianByQueryInput {
 input UserUpdateInput {
     username: String
     email: String
-    role: [TechnicianRole]
 }
 
 type Query {
