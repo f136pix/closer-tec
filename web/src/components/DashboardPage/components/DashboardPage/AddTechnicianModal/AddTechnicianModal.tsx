@@ -147,8 +147,15 @@ function AddTechnicianModal({isOpen, handleClose, showSnackBar}: IProps) {
                 handleClose();
             }
             if (res.status == 500) {
-                setErrMsg(`${res.data.errors[0].message}`);
+                const msg = res.data.errors[0].message ? res.data.errors[0].message : "There was a error communicating with the server";
+                setErrMsg(`${msg}`);
+                return;
             }
+            else {
+                setErrMsg("There was a error communicating with the server");
+                return;
+            }
+
         } finally {
             setIsCreatingTechnician(false);
         }
