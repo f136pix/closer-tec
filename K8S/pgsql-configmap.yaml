@@ -1,0 +1,11 @@
+# env variables
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: pgsql-secret
+  labels:
+    app: postgres
+data:
+  POSTGRES_DB: closest-tec
+  POSTGRES_USER: admin
+  POSTGRES_PASSWORD: paS5w0rD!

@@ -1,0 +1,47 @@
+#pgsql deployment
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: pgsql-depl
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: postgres
+  template:
+    metadata:
+      labels:
+        app: postgres
+    spec:
+      containers:
+        - name: postgres
+          image: 'postgres:14'
+          imagePullPolicy: IfNotPresent
+          ports:
+            - containerPort: 5432
+          envFrom:
+            - configMapRef:
+                name: pgsql-secret
+          volumeMounts:
+            - mountPath: /var/lib/postgresql/data
+              name: pgsqldb
+      volumes:
+        - name: pgsqldb
+          persistentVolumeClaim: # index to volume claim - pgsql-pvc.yaml
+            claimName: postgresql-volume-claim
+---
+# ClusterIp
+# assigns a internal ip inside of the kubernetes container for the service
+apiVersion: v1
+kind: Service
+metadata:
+  name: pgsql-clutsterip-srv # internal endpoint
+spec:
+  type: ClusterIP
+  selector:
+    app: postgres
+  ports:
+    - name: postgres
+      protocol: TCP
+      targetPort: 5432
+      port: 5432
