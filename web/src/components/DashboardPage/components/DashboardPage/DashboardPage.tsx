@@ -22,7 +22,7 @@ function DashboardPage() {
     const [snackBarMsg, setSnackBarMsg] = useState<string>("");
 
     const {isLoaded} = useLoadScript({
-        googleMapsApiKey: 'AIzaSyAAKPtqmfn_dKTzhOvK2zwKjKt75hVkhpo',
+        googleMapsApiKey: '#######',
         libraries: ['places']
     });
 
