@@ -57,7 +57,7 @@ function LoginPage() {
                 <LoginUserForm handleSwitchForm={handleFormChange}/>
             }
 
-            <footer className={'sticky bg-black bottom-0 w-full mt-5'}>
+            <footer className={'sticky bg-black bottom-0 w-full mt-16'}>
                 <div className={'text-white text-center p-4'}>
                     <p>Filipe Furlan Cinel, 2024</p>
                     <p><Link to={"https://github.com/f136pix/closer-tec.git"} className={"underline"}>Github

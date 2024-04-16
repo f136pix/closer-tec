@@ -29,6 +29,13 @@ ARG TARGETARCH
 RUN --mount=type=cache,id=nuget,target=/root/.nuget/packages \
     dotnet publish -a ${TARGETARCH/amd64/x64} --use-current-runtime --self-contained false -o /app
 
+# Install the Entity Framework Core CLI tool.
+RUN dotnet tool install --global dotnet-ef --version 7.0.0
+ENV PATH="$PATH:/root/.dotnet/tools"
+
+# Run migrations while the sdk is still acessible
+#RUN dotnet ef database update
+
 # If you need to enable globalization and time zones:
 # https://github.com/dotnet/dotnet-docker/blob/main/samples/enable-globalization.md
 ################################################################################
@@ -45,9 +52,14 @@ RUN --mount=type=cache,id=nuget,target=/root/.nuget/packages \
 FROM mcr.microsoft.com/dotnet/aspnet:7.0-alpine AS final
 WORKDIR /app
 
+# Set the environment variable to run the app in production mode.
+#ENV ASPNETCORE_ENVIRONMENT=Production
+
 # Copy everything needed to run the app from the "build" stage.
 COPY --from=build /app .
 
+# Set the port that the application will run on.
+ENV ASPNETCORE_URLS=http://+:5109
 # Create a non-privileged user that the app will run under.
 # See https://docs.docker.com/go/dockerfile-user-best-practices/
 ARG UID=10001

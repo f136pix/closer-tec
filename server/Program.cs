@@ -1,3 +1,5 @@
+using Microsoft.AspNetCore;
+using Microsoft.EntityFrameworkCore;
 using server.Data;
 using server.GraphQL;
 using server.Services;
@@ -29,15 +31,30 @@ builder.Services.AddCors(options =>
     options.AddPolicy("myAppCors", policy =>
     {
         // allow one origin
-    policy.WithOrigins(configuration["AppSettings:AllowedHosts"]!)
+        policy.WithOrigins(configuration["AppSettings:AllowedHosts"]!)
             .AllowAnyHeader()
             .AllowAnyMethod()
             .AllowCredentials();
     });
+    
+});
+
+builder.Services.AddCors(options =>
+{
+    options.AddPolicy("myAppProdCors", policy =>
+    {
+        // allow one origin
+        policy.AllowAnyOrigin()
+            .AllowAnyHeader()
+            .AllowAnyMethod();
+    });
+    
 });
 
 var app = builder.Build();
 //var configuration = app.Services.GetRequiredService<IConfiguration>();
+var serviceScopeFactory = app.Services.GetRequiredService<IServiceScopeFactory>();
+
 
 // Configure the HTTP request pipeline.
 if (app.Environment.IsDevelopment())
@@ -46,12 +63,35 @@ if (app.Environment.IsDevelopment())
     app.UseSwagger();
     app.UseSwaggerUI();
     app.UseCors("myAppCors");
-Console.WriteLine("--> Allowed Origins -> " + configuration["AppSettings:AllowedHosts"]);
+    Console.WriteLine("--> Allowed Origins -> " + configuration["AppSettings:AllowedHosts"]);
 }
 
 if (app.Environment.IsProduction())
 {
     Console.WriteLine("--> Prod mode <--");
+    app.UseSwagger();
+    app.UseSwaggerUI();
+    app.UseCors("myAppProdCors");
+
+    using (var scope = serviceScopeFactory.CreateScope())
+    {
+        // Get the DataContext
+        var context = scope.ServiceProvider.GetRequiredService<DataContext>();
+        
+        // Check if any migrations have been applied (i.e., tables have been created)
+        var appliedMigrations = context.Database.GetAppliedMigrations().ToList();
+
+        Console.Write("--> Applied migrations : ", appliedMigrations ,"\n");
+        
+        if (!appliedMigrations.Any())
+        {
+            
+            Console.WriteLine("--> Applying migrations");
+            // If no migrations have been applied, apply the migrations
+            context.Database.Migrate();
+            Console.WriteLine("--> Migrations applied");
+        }
+    }
 }
 
 app.UseHttpsRedirection();

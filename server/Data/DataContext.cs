@@ -21,6 +21,8 @@ public class DataContext : DbContext
     // called when a model is created
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
+        modelBuilder.HasDefaultSchema("public");
+        
         base.OnModelCreating(modelBuilder);
 
         // set default value for Role
