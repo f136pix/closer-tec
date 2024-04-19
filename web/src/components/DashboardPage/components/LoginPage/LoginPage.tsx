@@ -8,31 +8,31 @@ import CreateUserForm from "./CreateUserForm/CreateUserForm.tsx";
 import LoginUserForm from "./LoginUserForm/LoginUserForm.tsx";
 
 function LoginPage() {
-    const [isSnackBarOpen, setSnackBarOpen] = useState<boolean>(false);
-    const [isErrorSnackBarOpen, setErrorSnackBarOpen] = useState<boolean>(false);
-    const [snackBarMsg, setSnackBarMsg] = useState<string>("");
+    // const [isSnackBarOpen, setSnackBarOpen] = useState<boolean>(false);
+    // const [isErrorSnackBarOpen, setErrorSnackBarOpen] = useState<boolean>(false);
+    //const [snackBarMsg, setSnackBarMsg] = useState<string>("");
 
     const [isRegisterForm, setIsRegisterForm] = useState(true);
 
 
-    const handleSnackbarClose = (_event?: React.SyntheticEvent | Event, reason?: string) => {
-        if (reason === 'clickaway') {
-            return;
-        }
-        setErrorSnackBarOpen(false);
-        setSnackBarOpen(false);
-    };
+    // const handleSnackbarClose = (_event?: React.SyntheticEvent | Event, reason?: string) => {
+    //     if (reason === 'clickaway') {
+    //         return;
+    //     }
+    //     setErrorSnackBarOpen(false);
+    //     setSnackBarOpen(false);
+    // };
 
-    const showSnackBar = (msg: string, isError: boolean) => {
-        if (isError) {
-            setSnackBarOpen(false);
-            setErrorSnackBarOpen(true);
-        } else {
-            setErrorSnackBarOpen(false);
-            setSnackBarOpen(true);
-        }
-        setSnackBarMsg(msg);
-    };
+    // const showSnackBar = (msg: string, isError: boolean) => {
+    //     if (isError) {
+    //         setSnackBarOpen(false);
+    //         setErrorSnackBarOpen(true);
+    //     } else {
+    //         setErrorSnackBarOpen(false);
+    //         setSnackBarOpen(true);
+    //     }
+    //     setSnackBarMsg(msg);
+    // };
 
     const handleFormChange = () => {
         if (isRegisterForm) {
@@ -43,7 +43,7 @@ function LoginPage() {
     };
 
     return (
-        <FillScreenWrapper >
+        <FillScreenWrapper>
             <div className={'mt-12 flex w-[28%] mx-auto text-center justify-around'}>
                 <h1 className={'font-extrabold text-[4rem]'}>CLOSER </h1><MapPin className={'font-extrabold my-auto'}
                                                                                  size={70}/>
