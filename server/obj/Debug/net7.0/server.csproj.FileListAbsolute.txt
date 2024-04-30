@@ -545,3 +545,4 @@
 /home/filipe/Desktop/Projects/closer-tec/server/obj/Debug/net7.0/server.genruntimeconfig.cache
 /home/filipe/Desktop/Projects/closer-tec/server/obj/Debug/net7.0/ref/server.dll
 /home/filipe/Desktop/Projects/closer-tec/server/bin/Debug/net7.0/appsettings.Production.json
+/home/filipe/Desktop/Projects/closer-tec/server/obj/Debug/net7.0/server.sourcelink.json
