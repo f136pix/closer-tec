@@ -2,7 +2,7 @@ import {useState} from "react";
 import {Link} from "react-router-dom";
 import {MapPin} from "lucide-react";
 
-import FillScreenWrapper from "../../../Utils/ScreenWrapper.tsx";
+import FillScreenWrapper from "../Utils/ScreenWrapper.tsx";
 
 import CreateUserForm from "./CreateUserForm/CreateUserForm.tsx";
 import LoginUserForm from "./LoginUserForm/LoginUserForm.tsx";
@@ -52,9 +52,9 @@ function LoginPage() {
                 <h1 className={'font-extrabold text-[4rem]'}>TECHNICIAN</h1>
             </div>
             {isRegisterForm ?
-                <CreateUserForm handleSwitchForm={handleFormChange}/>
-                :
                 <LoginUserForm handleSwitchForm={handleFormChange}/>
+                :
+                <CreateUserForm handleSwitchForm={handleFormChange}/>
             }
 
             <footer className={'sticky bg-black bottom-0 w-full mt-16'}>

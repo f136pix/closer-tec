@@ -29,3 +29,7 @@ export type ICreateTechnicianDto = {
     latitude: number;
     longitude: number;
 }
+
+export type ILoginUserDto = {
+
+}
