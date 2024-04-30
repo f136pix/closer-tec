@@ -1,19 +1,24 @@
-import {Box, Button, Grid, TextField} from "@mui/material";
 import {useForm} from "react-hook-form";
 import {zodResolver} from "@hookform/resolvers/zod";
-import {registerValidationSchema} from "../../../../../lib/validation";
+import {Button, TextField} from "@mui/material";
+import {Box, Grid} from "@mui/material";
+
+import {registerValidationSchema} from "../../../lib/validation";
 
 type IProps = {
     handleSwitchForm: () => void
 }
 
-function LoginUserForm(props: IProps) {
+
+function CreateUserForm(props : IProps) {
 
     const form = useForm({
         resolver: zodResolver(registerValidationSchema),
         defaultValues: {
+            name: '',
             email: '',
             password: '',
+            passwordConfirm: '',
         }
     });
 
@@ -24,6 +29,15 @@ function LoginUserForm(props: IProps) {
     return (
         <form onSubmit={form.handleSubmit(onSubmit)} className={'mt-16 w-1/3 mx-auto'}>
             <Grid container spacing={2}>
+                <Grid item xs={12}>
+                    <TextField className={'h-20'}
+                               label="Name"
+                               {...form.register('name')}
+                               error={!!form.formState.errors.name}
+                               helperText={form.formState.errors.name?.message}
+                               fullWidth
+                    />
+                </Grid>
                 <Grid item xs={12}>
                     <TextField className={'h-20'}
                                label="Email"
@@ -44,13 +58,18 @@ function LoginUserForm(props: IProps) {
                     />
                 </Grid>
                 <Grid item xs={12}>
+                    <TextField className={'h-20'}
+                               label="Confirm Password"
+                               type="password"
+                               {...form.register('passwordConfirm')}
+                               error={!!form.formState.errors.passwordConfirm}
+                               helperText={form.formState.errors.passwordConfirm?.message}
+                               fullWidth
+                    />
+                </Grid>
+                <Grid item xs={12}>
                     <Box sx={{display: 'flex', justifyContent: 'space-between'}}>
-                        <h2 className={''}>Don't have a account ? <a
-                            className={'text-blue-700 underline cursor-pointer'}
-                            onClick={props.handleSwitchForm}>
-                            Sing Up
-                        </a>
-                        </h2>
+                        <h2 className={''}>Already have a account ? <a className={'text-blue-700 underline cursor-pointer'} onClick={props.handleSwitchForm}>Log In</a></h2>
                         <Button type="submit" variant="contained">
                             Submit
                         </Button>
@@ -61,4 +80,4 @@ function LoginUserForm(props: IProps) {
     );
 }
 
-export default LoginUserForm;
+export default CreateUserForm;
