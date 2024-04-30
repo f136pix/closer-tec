@@ -31,5 +31,12 @@ export type ICreateTechnicianDto = {
 }
 
 export type ILoginUserDto = {
+    username: string;
+    password: string;
+}
 
+export type IRegisterUserDto = {
+    username: string;
+    email: string;
+    password: string;
 }
