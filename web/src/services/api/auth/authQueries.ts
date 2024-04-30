@@ -1,8 +1,8 @@
 import {useMutation} from "@tanstack/react-query";
 
-import {IApiRes, ILoginUserDto} from "../../../types";
+import {IApiRes, ILoginUserDto, IRegisterUserDto} from "../../../types";
 
-import {authenticateUser} from "./authApi.ts";
+import {authenticateUser, registerUser} from "./authApi.ts";
 
 export const useAuthenticateUser = () => {
     return useMutation(
@@ -22,6 +22,32 @@ export const useAuthenticateUser = () => {
                         data: err.response.data
                     };
                     throw new Error(data.data.message);
+                }
+
+            }
+        }
+    );
+};
+
+
+export const useRegisterUser = () => {
+    return useMutation(
+        {
+            mutationFn: async (dto: IRegisterUserDto): Promise<IApiRes> => {
+                try {
+                    console.log(dto);
+                    const res = await registerUser(dto);
+                    const data: IApiRes = {
+                        status: res.status,
+                        data: res.data
+                    };
+                    return data;
+                } catch (err: any) {
+                    const data: IApiRes = {
+                        status: err.response.status,
+                        data: err.response.data
+                    };
+                    throw new Error(data.data);
                 }
 
             }

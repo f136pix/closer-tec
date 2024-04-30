@@ -1,9 +1,10 @@
 import {useState} from "react";
 import {Alert, Button, Snackbar, TextField} from "@mui/material";
 import {useLoadScript} from "@react-google-maps/api";
-import {Database} from "lucide-react";
+import {Database, LogOutIcon} from "lucide-react";
 
 import {technicianRoles} from "../../../../data/presetData.tsx";
+import {useAuth} from "../../../../hooks/useAuth.tsx";
 import {useGetTechniciansByQueries} from "../../../../services/api/graphQL/graphQlQueries.ts";
 import {IGetTechniciansByQueries, ITechncian} from "../../../../types";
 import MultiSelect from "../../../Shared/MultiSelect.tsx";
@@ -39,6 +40,9 @@ function DashboardPage() {
     const [isOpenModal, setIsOpenModal] = useState<boolean>(false);
     // is open lateral drawer
     const [isOpenDrawer, setIsOpenDrawer] = useState<boolean>(false);
+    // auth context
+    const auth = useAuth();
+
 
     const handleSnackbarClose = (_event?: React.SyntheticEvent | Event, reason?: string) => {
         if (reason === 'clickaway') {
@@ -82,7 +86,7 @@ function DashboardPage() {
     const showSnackBar = (msg: string) => {
         setSnackBarMsg(msg);
         setSnackBarOpen(true);
-    }
+    };
     return (
         <FillScreenWrapper>
             <section className={'flex flex-row content-center justify-start h-[10%] min-h-[10vh]'}>
@@ -133,7 +137,8 @@ function DashboardPage() {
                 {/*add technician modal*/}
                 <AddTechnicianModal isOpen={isOpenModal} handleClose={handleCloseModal} showSnackBar={showSnackBar}/>
                 {/*lateral drawer*/}
-                <TechniciansInfoDrawer isOpenDrawer={isOpenDrawer} handleCloseDrawer={handleCloseDrawer} techniciansList={filteredTechnicians} retrieveTechnicians={handleRetrieving}/>
+                <TechniciansInfoDrawer isOpenDrawer={isOpenDrawer} handleCloseDrawer={handleCloseDrawer}
+                                       techniciansList={filteredTechnicians} retrieveTechnicians={handleRetrieving}/>
                 <Snackbar open={snackBarOpen} autoHideDuration={2000} onClose={handleSnackbarClose}>
                     <Alert
                         onClose={handleSnackbarClose}
@@ -158,6 +163,21 @@ function DashboardPage() {
                             ":hover": {background: 'darkblue', color: 'white'}
                         }}>
                         +
+                    </Button>
+                </div>
+                <div className="fixed ml-10 bottom-0 flex items-end justify-center z-10 mb-10 w-10 mx-auto">
+                    <Button
+                        onClick={auth.logout}
+                        className={''}
+                        variant={'contained'}
+                        sx={{
+                            paddingBlock: 1,
+                            height: 30,
+                            background: 'white',
+                            color: 'red',
+                            ":hover": {background: 'darkred', color: 'white'}
+                        }}>
+                        <LogOutIcon/>
                     </Button>
                 </div>
                 <div className="fixed ml-10 mt-[7%] top-0 flex items-end justify-center z-10 mb-10 w-10 mx-auto">

@@ -3,21 +3,22 @@ import {useForm} from "react-hook-form";
 import {zodResolver} from "@hookform/resolvers/zod";
 import {Alert, Box, Button, Grid, TextField} from "@mui/material";
 
-import {saveCookie} from "../../../lib/utils.tsx";
+import {useAuth} from "../../../hooks/useAuth.tsx";
 import {loginValidationSchema} from "../../../lib/validation";
 import {useAuthenticateUser} from "../../../services/api/auth/authQueries.ts";
 import {ILoginUserDto} from "../../../types";
-import {useNavigate} from "react-router-dom";
 
 type IProps = {
     handleSwitchForm: () => void
 }
 
+
 function LoginUserForm(props: IProps) {
+    const auth = useAuth();
     const {mutateAsync: authenticateUser, isPending: isLogging} = useAuthenticateUser();
     //const mutation = useAuthenticateUser();
     const [errMessage, setErrMessage] = useState("");
-    const navigate = useNavigate();
+    //const navigate = useNavigate();
 
 
 
@@ -49,9 +50,7 @@ function LoginUserForm(props: IProps) {
             return;
         }
         setErrMessage("");
-        await saveCookie("jwt", res.data);
-        navigate("/");
-
+        auth!.login(res.data);
     };
 
     return (
