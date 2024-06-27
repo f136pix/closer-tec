@@ -6,6 +6,5 @@ Add, visualize and manage technicians.
     'kubectl apply -f np-srv.yaml'
     'kubectl apply -f pgsql-configmap.yaml'
     'kubectl apply -f pgsql-depl.yaml'
-    'kubectl apply -f '
     Then update the db with `dotnet ef database update`
     and run it in production with `dotnet run --environment Production`
