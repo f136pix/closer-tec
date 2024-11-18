@@ -15,4 +15,7 @@ GraphQl is used for server-client communication and a JWT user authentication im
 
 ## App demo : 
 
-![Demo Fig](closer-tec-demo.gif)
+<video width="600" controls>
+  <source src="./closer-tec-demo.mp4" type="video/mp4">
+  Your browser does not support the video tag.
+</video>
