@@ -14,8 +14,6 @@ GraphQl is used for server-client communication and a JWT user authentication im
 ` kubectl apply -f ${filename}`
 
 ## App demo : 
+![img.png](img.png)
 
-<video width="600" controls>
-  <source src="./closer-tec-demo.mp4" type="video/mp4">
-  Your browser does not support the video tag.
-</video>
+![img_1.png](img_1.png)
