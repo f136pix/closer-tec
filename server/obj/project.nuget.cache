@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "oavAwptRy/SfI6qmq6yMT3Meij+iXTbXxZrLX+Imlf35MKWx8MqiUyHaAKHW18b5jaTkup6v2vZf9oSMfJoz+A==",
+  "dgSpecHash": "kDu63+9jac4XanOCQ6tTuz8YCA9/laYJhV4kQDcEJ5SvIaHvL9eFUF0dtB4WbpLBbW9Tz4XDZSdJXJunhM+BKA==",
   "success": true,
-  "projectFilePath": "/home/filipe/Desktop/Projects/closer-tec/server/server.csproj",
+  "projectFilePath": "/home/filipe/Desktop/closer-tec/server/server.csproj",
   "expectedPackageFiles": [
     "/home/filipe/.nuget/packages/bananacakepop.middleware/13.0.0/bananacakepop.middleware.13.0.0.nupkg.sha512",
     "/home/filipe/.nuget/packages/bcrypt.net-core/1.6.0/bcrypt.net-core.1.6.0.nupkg.sha512",
@@ -276,7 +276,9 @@
     "/home/filipe/.nuget/packages/system.xml.readerwriter/4.3.0/system.xml.readerwriter.4.3.0.nupkg.sha512",
     "/home/filipe/.nuget/packages/system.xml.xdocument/4.3.0/system.xml.xdocument.4.3.0.nupkg.sha512",
     "/home/filipe/.nuget/packages/yarp.reverseproxy/2.0.1/yarp.reverseproxy.2.0.1.nupkg.sha512",
-    "/home/filipe/.nuget/packages/microsoft.netcore.app.host.linux-x64/7.0.17/microsoft.netcore.app.host.linux-x64.7.0.17.nupkg.sha512"
+    "/home/filipe/.nuget/packages/microsoft.netcore.app.ref/7.0.20/microsoft.netcore.app.ref.7.0.20.nupkg.sha512",
+    "/home/filipe/.nuget/packages/microsoft.aspnetcore.app.ref/7.0.20/microsoft.aspnetcore.app.ref.7.0.20.nupkg.sha512",
+    "/home/filipe/.nuget/packages/microsoft.netcore.app.host.linux-x64/7.0.20/microsoft.netcore.app.host.linux-x64.7.0.20.nupkg.sha512"
   ],
   "logs": []
 }

@@ -2,6 +2,7 @@ using Microsoft.AspNetCore;
 using Microsoft.EntityFrameworkCore;
 using server.Data;
 using server.GraphQL;
+using server.Models;
 using server.Services;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -26,6 +27,9 @@ builder.Services
     .AddQueryType<Query>()
     .AddMutationType<Mutation>();
 // cors
+
+Console.WriteLine("Allowed Hosts" + configuration["AppSettings:AllowedHosts"]!);
+
 builder.Services.AddCors(options =>
 {
     options.AddPolicy("myAppCors", policy =>
@@ -36,20 +40,18 @@ builder.Services.AddCors(options =>
             .AllowAnyMethod()
             .AllowCredentials();
     });
-    
 });
 
-builder.Services.AddCors(options =>
-{
-    options.AddPolicy("myAppProdCors", policy =>
-    {
-        // allow one origin
-        policy.AllowAnyOrigin()
-            .AllowAnyHeader()
-            .AllowAnyMethod();
-    });
-    
-});
+// builder.Services.AddCors(options =>
+// {
+//     options.AddPolicy("myAppProdCors", policy =>
+//     {
+//         // allow one origin
+//         policy.AllowAnyOrigin()
+//             .AllowAnyHeader()
+//             .AllowAnyMethod();
+//     });
+// });
 
 var app = builder.Build();
 //var configuration = app.Services.GetRequiredService<IConfiguration>();
@@ -63,7 +65,6 @@ if (app.Environment.IsDevelopment())
     app.UseSwagger();
     app.UseSwaggerUI();
     app.UseCors("myAppCors");
-    Console.WriteLine("--> Allowed Origins -> " + configuration["AppSettings:AllowedHosts"]);
 }
 
 if (app.Environment.IsProduction())
@@ -71,25 +72,38 @@ if (app.Environment.IsProduction())
     Console.WriteLine("--> Prod mode <--");
     app.UseSwagger();
     app.UseSwaggerUI();
-    app.UseCors("myAppProdCors");
+    app.UseCors("myAppCors");
+//     app.UseCors(builder => builder
+//         .AllowAnyOrigin()
+//         .AllowAnyMethod()
+//         .AllowAnyHeader());
 
     using (var scope = serviceScopeFactory.CreateScope())
     {
         // Get the DataContext
         var context = scope.ServiceProvider.GetRequiredService<DataContext>();
-        
+
         // Check if any migrations have been applied (i.e., tables have been created)
         var appliedMigrations = context.Database.GetAppliedMigrations().ToList();
 
-        Console.Write("--> Applied migrations : ", appliedMigrations ,"\n");
-        
+        Console.Write("--> Applied migrations : ", appliedMigrations, "\n");
+
         if (!appliedMigrations.Any())
         {
-            
             Console.WriteLine("--> Applying migrations");
             // If no migrations have been applied, apply the migrations
             context.Database.Migrate();
-            Console.WriteLine("--> Migrations applied");
+
+            var user = new User
+            {
+                Username = "root",
+                Email = "root@mail.com",
+                PasswordHash = "root123"
+            };
+            await context.Users.AddAsync(user);
+
+
+            Console.WriteLine("--> Migrations applied, root user created");
         }
     }
 }

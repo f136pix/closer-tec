@@ -69,4 +69,4 @@ COPY --from=build /usr/src/app/dist ./dist
 EXPOSE 4173
 
 # Run the application.
-CMD npm run preview
+CMD npm run preview -- --host 0.0.0.0

@@ -25,9 +25,9 @@ public class Query
     
     public async Task<IEnumerable<Technician>> GetTechniciansByQuery(TechnicianQueryDto technicianQueryDto, [Service] ITechnicianRepo technicianRepo)
     {
-        Console.WriteLine($"-->{technicianQueryDto.Name}");
-        Console.WriteLine($"-->{technicianQueryDto.City}");
-        Console.WriteLine($"-->{technicianQueryDto.Role}");
+//         Console.WriteLine($"-->{technicianQueryDto.Name}");
+//         Console.WriteLine($"-->{technicianQueryDto.City}");
+//         Console.WriteLine($"-->{technicianQueryDto.Role}");
         
         return await technicianRepo.GetTechniciansByQuery(technicianQueryDto);
     }
