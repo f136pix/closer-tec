@@ -16,5 +16,5 @@ GraphQl is used for server-client communication and a JWT user authentication im
 ## App demo : 
 ![img.png](img.png)
 
-![img_1.png](img_1.png)
+![img_1".png](img_1.png)
 
