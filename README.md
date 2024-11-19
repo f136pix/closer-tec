@@ -13,6 +13,8 @@ GraphQl is used for server-client communication and a JWT user authentication im
 - If you do not have make installed, use Kubectl to run all the commands in [K8S](./K8S) folder.
 ` kubectl apply -f ${filename}`
 
+- The web nodePort will be avaible in [localhost:30009](./K8S)
+
 ## App demo : 
 ![img.png](img.png)
 
